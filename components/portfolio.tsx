@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react';
 
+import ContactForm from './contact-form';
+
 function loadParticlesScript(): Promise<void> {
   return new Promise((resolve, reject) => {
     if (typeof window === 'undefined') return reject();
@@ -94,17 +96,6 @@ export default function Portfolio() {
                 }
             });
         });
-
-        // Form submission
-        const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                alert('Message sent! Thanks for reaching out.');
-                (this as HTMLFormElement).reset();
-            });
-        }
 
         // Add fade-in animation on scroll
         const observerOptions = {
@@ -312,29 +303,7 @@ export default function Portfolio() {
             </div>          
         </div>
       </section>
-      <section id="contact">
-        <h2 className="section-title">Get In Touch</h2>
-        <p style={{ color: "#cccccc", marginBottom: 30 }}>Have a project in mind or want to discuss potential opportunities? Reach out!</p>
-        <form className="contact-form">
-          <div className="form-group">
-            <label htmlFor="name">Your Name</label>
-            <input type="text" id="name" className="form-control" required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Your Email</label>
-            <input type="email" id="email" className="form-control" required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="subject">Subject</label>
-            <input type="text" id="subject" className="form-control" required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="message">Message</label>
-            <textarea id="message" className="form-control" required></textarea>
-          </div>
-          <button type="submit" className="submit-btn">Send Message</button>
-        </form>
-      </section>
+      <ContactForm />
       <footer>
         <div className="social-links">
           <a href="https://www.linkedin.com/in/qbrady/" className="social-link">in</a>
