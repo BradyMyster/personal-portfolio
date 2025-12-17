@@ -8,12 +8,14 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus('sending');
     const form = e.currentTarget;
+    const formData = new FormData(form);
+    
     const data = {
       to: process.env.NEXT_PUBLIC_CONTACT_TO_EMAIL || '', // Set in .env.local
-      subject: form.subject.value,
-      body: form.message.value,
-      from: form.email.value,
-      name: form.toName.value,
+      subject: formData.get('subject') as string,
+      body: formData.get('message') as string,
+      from: formData.get('email') as string,
+      name: formData.get('name') as string,
     };
     try {
       const res = await fetch('/api/send-secure-email', {
